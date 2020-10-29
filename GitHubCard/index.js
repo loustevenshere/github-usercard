@@ -3,12 +3,21 @@
     (replacing the placeholder with your Github name):
     https://api.github.com/users/<your name>
 */
+//Importing axios and my Github
+import axios from "axios";
+axios
+.get("https://api.github.com/users/loustevenshere")
+.then((myGithub) => {
+    console.log(myGithub)
+}); 
+
 
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
     github info! You will need to understand the structure of this
     data in order to use it to build your component function
 
+      //Looks Good!
     Skip to STEP 3.
 */
 
@@ -16,6 +25,13 @@
   STEP 4: Pass the data received from Github into your function,
     and append the returned markup to the DOM as a child of .cards
 */
+// axios
+// .get("https://api.github.com/users/loustevenshere")
+// .then((myGithub) => {
+//     cards.appendChild(myGithub)
+// }); 
+
+
 
 /*
   STEP 5: Now that you have your own card getting added to the DOM, either
@@ -49,6 +65,44 @@ const followersArray = [];
       </div>
     </div>
 */
+const cards = document.querySelector(".cards")
+function cardMaker({obj}) {
+  //instantiating the elements
+  const card = document.createElement("div");
+  const image = document.createElement("img");
+  const cardInfo = document.createElement("div");
+  const name = document.createElement("h3");
+  const username = document.createElement("p");
+  const location = document.createElement("p");
+  const profile = document.createElement("p");
+  const address = document.createElement("a");
+  const followers = document.createElement("p");
+  const following = document.createElement("p");
+  const bio = document.createElement("p");
+
+  //creating the heirarchy
+  card.appendChild(image)
+  card.appendChild(cardInfo)
+  cardInfo.appendChild(name)
+  cardInfo.appendChild(username)
+  cardInfo.appendChild(location)
+  cardInfo.appendChild(profile)
+  profile.appendChild(address)
+  cardInfo.appendChild(followers)
+  cardInfo.appendChild(following)
+  cardInfo.appendChild(bio)
+
+  //css handlers
+  card.classList.add("card")
+  image.src = obj.image //going to have to change this line*
+  cardInfo.classList.add("card-info")
+  name.classList.add("name")
+  username.classList.add("username")
+
+  //add text content from github object*
+  
+return card;
+}
 
 /*
   List of LS Instructors Github username's:
