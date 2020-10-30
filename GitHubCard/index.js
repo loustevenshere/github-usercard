@@ -8,8 +8,16 @@ import axios from "axios";
 axios
 .get("https://api.github.com/users/loustevenshere")
 .then((myGithub) => {
-    console.log(myGithub)
-}); 
+  const gitHubCardData = myGithub.data
+  const addCard = cardMaker(gitHubCardData);
+  cards.appendChild(addCard);
+  console.log("addCard", addCard)
+  console.log(addCard.name)
+})
+.catch(() => {
+  console.log("error with Axios request")
+});
+    
 
 
 /*
@@ -46,6 +54,10 @@ axios
 
 const followersArray = [];
 
+followersArray.map(item => {
+  axios.get()
+})
+
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
     Using DOM methods and properties, create and return the following markup:
@@ -66,18 +78,18 @@ const followersArray = [];
     </div>
 */
 const cards = document.querySelector(".cards")
-function cardMaker({obj}) {
+function cardMaker({avatar_url,login,location,twitter_username,url,followers,following}) {
   //instantiating the elements
   const card = document.createElement("div");
   const image = document.createElement("img");
   const cardInfo = document.createElement("div");
   const name = document.createElement("h3");
   const username = document.createElement("p");
-  const location = document.createElement("p");
+  const location1 = document.createElement("p");
   const profile = document.createElement("p");
   const address = document.createElement("a");
-  const followers = document.createElement("p");
-  const following = document.createElement("p");
+  const followers1 = document.createElement("p");
+  const following1 = document.createElement("p");
   const bio = document.createElement("p");
 
   //creating the heirarchy
@@ -85,24 +97,72 @@ function cardMaker({obj}) {
   card.appendChild(cardInfo)
   cardInfo.appendChild(name)
   cardInfo.appendChild(username)
-  cardInfo.appendChild(location)
+  cardInfo.appendChild(location1)
   cardInfo.appendChild(profile)
   profile.appendChild(address)
-  cardInfo.appendChild(followers)
-  cardInfo.appendChild(following)
+  cardInfo.appendChild(followers1)
+  cardInfo.appendChild(following1)
   cardInfo.appendChild(bio)
 
   //css handlers
   card.classList.add("card")
-  image.src = obj.image //going to have to change this line*
   cardInfo.classList.add("card-info")
   name.classList.add("name")
   username.classList.add("username")
 
-  //add text content from github object*
+  // add text content 
+  // image.src = obj.avatar_url
+  // name.textContent = obj.login
+  // username.textContent = obj.login
+  // location1.textContent = obj.location1
+  // profile.textContent = obj.profile
+  // address.textContent = obj.address
+  // followers.textContent = obj.followers
+  // following.textContent = obj.following
+  // bio.textContent = obj.bio
+
+  image.src = avatar_url
+  name.textContent = login
+  location1.textContent = location
+  profile.textContent = twitter_username
+  address.href = url
+  followers1.textContent = `Followers: ${followers}`
+  following1.textContent = `Following: ${following}`
+
+
   
 return card;
 }
+
+// function gitHubGrab(link) {
+// }
+
+// axios.get("https://api.github.com/users/loustevenshere")
+// .then((res) => {
+//   const githHubCardData = res.data
+//   console.log(res.data
+//   const addCard = cardMaker(githHubCardData);
+//   cards.appendChild(addCard);
+//   console.log("addCard", addCard)
+// })
+// .catch(() => {
+//   console.log("error with Axios request")
+// });
+
+
+// console.log(gitHubGrab("https://api.github.com/users/loustevenshere"))
+
+/*
+  STEP 4: Pass the data received from Github into your function,
+    and append the returned markup to the DOM as a child of .cards
+*/
+// axios
+// .get("https://api.github.com/users/loustevenshere")
+// .then((myGithub) => {
+//     cards.appendChild(myGithub)
+// }); 
+
+
 
 /*
   List of LS Instructors Github username's:
