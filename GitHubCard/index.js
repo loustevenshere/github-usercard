@@ -92,7 +92,7 @@ followersArray.forEach(gitUser => {
     </div>
 */
 const cards = document.querySelector('.cards');
-function cardMaker({avatar_url,login, name, location, html_url, followers, following, bio}) {
+function cardMaker({avatar_url,login, name, location, url, followers, following, bio}) {
   //Creating the dom elements
   const card = document.createElement('div');
   const gitImg = document.createElement('img');
@@ -105,6 +105,7 @@ function cardMaker({avatar_url,login, name, location, html_url, followers, follo
   const gitFollowers = document.createElement('p');
   const gitFollowing = document.createElement('p');
   const gitBio = document.createElement('p');
+  const gitBtn = document.createElement('button');
 
   //Creating the hierarchy
   // cards.appendChild(card);
@@ -118,22 +119,50 @@ function cardMaker({avatar_url,login, name, location, html_url, followers, follo
   cardInfo.appendChild(gitFollowers);
   cardInfo.appendChild(gitFollowing);
   cardInfo.appendChild(gitBio);
+  cardInfo.appendChild(gitBtn)
+
 
   //Class names
   card.classList.add('card');
   cardInfo.classList.add('card-info');
   usersName.classList.add('name');
   userName.classList.add('username');
+  gitBtn.classList.add('button');
 
 //Content
 gitImg.src = avatar_url;
 usersName.textContent = name;
 userName.textContent = login;
 userLocation.textContent = location;
-gitaddress.src = html_url;
+profile.href = url;
+gitaddress.href = url;
+gitaddress.textContent = url;
 gitFollowers.textContent = `Followers: ${followers}`;
 gitFollowing.textContent = `Following: ${following}`;
 gitBio.textContent = `Bio: ${bio}`;
+console.log(gitaddress);
+
+//button logic
+//When the button is clicked, I want the card to expand(transition) and reveal more git data
+// const onCardClick = (e) => {
+//   const card = e.currentTarget;
+//   const cardClone = card.cloneNode(true);
+//   const {top, left, width, height} = card.getBoundingClientRect();
+//   cardClone.style.position = "fixed";
+//   cardClone.style.top = top + 'px';
+//   cardClone.style.left = left + 'px';
+//   cardClone.style.width = width + 'px';
+//   cardClone.style.height = height + 'px';
+
+//   card.style.opacity = '0';
+//   card.parentNode.appendChild(cardClone);
+// }
+// card.forEach(card.addEventListener('click', onCardClick));
+
+gitBtn.addEventListener('click', () => {
+  card.classList.toggle("expandedcard")
+})
+
 
 return card;
 
@@ -146,3 +175,4 @@ return card;
     luishrd
     bigknell
 */
+

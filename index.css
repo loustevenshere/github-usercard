@@ -99,6 +99,7 @@ body {
   box-shadow: 0 1px 6px -2px #000;
   background-color: #FFF;
   margin-bottom: 30px;
+  transition: ease-in-out 2s;
 }
 
 .card img {
@@ -123,5 +124,27 @@ body {
   margin: 3px 0 10px;
 }
 
+.button {
+  height: 10px;
+  border: 1px black;
+  background-color: #FFF;
+  width: 10px;
+  border-radius: 2px;
+  position: relative;
+  
+}
+
+ .expandedcard {
+   background-color: orange;
+   
+ }
+
+ .content {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #f1f1f1;
+}
 
 
